@@ -107,10 +107,12 @@ void *player_thread(void *arg) {
 			sleep(1);
 	}
 
+
 	bzero(rawbuf, BUFLEN);
 	r = fscanf(rd, "%u:%u:%u.%lu %u.%u.%u %s\n", &tm.tm_hour, &tm.tm_min,
 			&tm.tm_sec, &fts_prev.tv_nsec, &tm.tm_mday, &tm.tm_mon,
 			&tm.tm_year, (char *) &rawbuf);
+	tm.tm_isdst = -1; /* Let mktime determine whether daylight savings is in effect */
 	fts_prev.tv_sec = mktime(&tm);
 	fts_prev.tv_nsec = fts_prev.tv_nsec * 1000000;
 
