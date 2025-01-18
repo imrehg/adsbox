@@ -670,7 +670,7 @@ static void f_inttohex(sqlite3_context *context, int argc, sqlite3_value **argv)
 	if (argc == 1) {
 		int value = sqlite3_value_int(argv[0]);
 		char result[9];  // (32/4 = 8 digits) + 1 null terminator
-		sprintf(result, "%08X", value);
+		sprintf(result, "%06X", value);
 		sqlite3_result_text(context, result, -1, SQLITE_TRANSIENT);
 		return;
 	}
