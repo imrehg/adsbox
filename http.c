@@ -337,7 +337,8 @@ int make_kml(int *s) {
 }
 
 char * get_mime(char *path) { // mime type by file extension
-	char *ext = strchr(path, '.');
+	// the extension is the last part of the path after the last dot
+	char *ext = strrchr(path, '.');
 
 	if (!ext)
 		return NULL;
@@ -356,7 +357,7 @@ char * get_mime(char *path) { // mime type by file extension
 	if (!strcmp(ext, ".kml"))
 		return "application/vnd.google-earth.kml+xml";
 	if (!strcmp(ext, ".js"))
-		return "application/javascript";
+		return "text/javascript";
 	return "text/plain";
 }
 

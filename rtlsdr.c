@@ -148,7 +148,7 @@ Find this pattern
 			buf[i + 10] > buf[i + 11]))
 			continue;
 
-			avg_high = buf[i + 1]/2;
+		avg_high = buf[i + 1]/2;
 
 		if (buf[i + 12] > avg_high ||
 			buf[i + 13] > avg_high || buf[i + 14] > avg_high ||
