@@ -668,9 +668,9 @@ int db_exec_sql(char * format, ...) {
  */
 static void f_inttohex(sqlite3_context *context, int argc, sqlite3_value **argv) {
 	if (argc == 1) {
-		int * t = (int *) sqlite3_value_int(argv[0]);
-		char result[6];
-		sprintf(result, "%06X", (unsigned int) t);
+		int value = sqlite3_value_int(argv[0]);
+		char result[9];  // (32/4 = 8 digits) + 1 null terminator
+		sprintf(result, "%08X", value);
 		sqlite3_result_text(context, result, -1, SQLITE_TRANSIENT);
 		return;
 	}
@@ -679,9 +679,9 @@ static void f_inttohex(sqlite3_context *context, int argc, sqlite3_value **argv)
 
 static void f_inttooct(sqlite3_context *context, int argc, sqlite3_value **argv) {
 	if (argc == 1) {
-		int * t = (int *) sqlite3_value_int(argv[0]);
-		char result[6];
-		sprintf(result, "%04o", (unsigned int) t);
+		int value = sqlite3_value_int(argv[0]);
+		char result[12];  // (32/3 = 11 digits) + 1 null terminator
+		sprintf(result, "%04o", (unsigned int)value);
 		sqlite3_result_text(context, result, -1, SQLITE_TRANSIENT);
 		return;
 	}
